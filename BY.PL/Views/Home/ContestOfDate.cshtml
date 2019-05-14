@@ -1,0 +1,73 @@
+﻿@model IEnumerable<BY.Entity.Entity.Contest>
+
+<section class="page-section recent-game-page spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-md-6">
+                            <div class="recent-game-item">
+                                <div class="rgi-thumb set-bg" data-setbg="@item.Picture">
+                                    <div class="cata new">Yarışma</div>
+                                </div>
+                                <div class="rgi-content">
+                                    <h4>Büyük Ödül !! @item.Prize Bill</h4>
+                                    <p>Yarışma Bakiyesi : @item.Price  Bill</p>
+                                    <div>
+                                        Yarışma Tarihi:<h5 style="color:gold">@item.Date.ToShortDateString()/@item.Date.ToShortTimeString()</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+                <div class="site-pagination">
+                    <span class="active">01.</span>
+                    <a href="#">02.</a>
+                    <a href="#">03.</a>
+                </div>
+            </div>
+            <!-- sidebar -->
+            <div class="col-lg-4 col-md-7 sidebar pt-5 pt-lg-0">
+                <!-- widget -->
+                <div class="widget-item">
+                    <form class="search-widget">
+                        <input type="text" placeholder="Search">
+                        <button><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+                <!-- widget -->
+
+                <div class="widget-item">
+                    <h4 class="widget-title">Gelecek Yarışmalar</h4><marquee direction="up" onMouseOver="stop()" onMouseOut="start()" scrollamount="7" scrolldelay="1">
+                        @foreach (var data in Model)
+                        {
+
+
+                            <div class="latest-blog">
+                                <div class="lb-item">
+                                    <div class="lb-thumb set-bg" data-setbg="@data.Picture"></div>
+                                    <div class="lb-content">
+                                        <div class="lb-date">@data.Date.ToShortDateString()</div>
+                                        <p>Ödül : @data.Prize  Bakiye:@data.Price</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        }
+                    </marquee>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+

@@ -1,0 +1,99 @@
+﻿@model BY.Entity.Entity.Questions
+
+@{
+    ViewBag.Title = "Delete";
+}
+<div style="margin-top:100px">
+
+    <h2>Sil</h2>
+
+    <h3>Silmek İstediğinize Emin Misiniz?</h3>
+    <div>
+        <h4>Soru</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayName("Soru Türü")
+            </dt>
+
+            <dd>
+                @Html.DropDownList("ConTypeId", new SelectList(ViewBag.gametype, "Id", "TypeName"), new { @class = "form-control" })
+            </dd>
+
+            <dt>
+                @Html.DisplayName("Soru")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Question)
+            </dd>
+
+            <dt>
+                @Html.DisplayName("1.Şık")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Ans1)
+            </dd>
+
+            <dt>
+                @Html.DisplayName("2.Şık")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Ans2)
+            </dd>
+
+            <dt>
+                @Html.DisplayName("3.Şık")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Ans3)
+            </dd>
+
+            <dt>
+                @Html.DisplayName("4.Şık")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Ans4)
+            </dd>
+
+            <dt>
+                @Html.DisplayName("Doğru Cevap")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TrueAns)
+            </dd>
+
+            <dt>
+                @Html.DisplayName("Soru Seviyesi")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Level)
+            </dd>
+
+            <dt>
+                @Html.DisplayName("Aktif Mi?")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IsDeleted)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Sil" class="btn btn-default" /> |
+                @Html.ActionLink("Geri Dön", "Index")
+            </div>
+        }
+    </div>
+</div>

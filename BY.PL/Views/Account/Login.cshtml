@@ -1,0 +1,39 @@
+﻿@model BY.PL.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Register";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <!doctype html>
+    <html>
+    <head>
+        <title></title>
+        <link href="~/css/style.css" rel="stylesheet" />
+
+    </head>
+    <body>
+        <div class="loginbox">
+            <img src="~/img/userimg.png" class="avatar" />
+            <h1 style="margin:0; padding:0 0 20px; text-align:center;font-size:22px;color:whitesmoke">Giriş Yap</h1>
+            <form method="post" action="/Account/Login">
+                <p style="color:aliceblue">Kullanıcı Adı</p>
+                @*<input type="text" name="kad" placeholder="Kullanıcı Adı Gir" />*@
+                @Html.EditorFor(model=>model.Username,new { htmlAttributes = new { @class = "form-control" } })
+                
+                <p>Şifre </p>
+                @Html.EditorFor(model=>model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @*<input type="password" name="ksif" placeholder="Şifre Gir" />*@
+                <input type="submit" name="" value="Login" />
+                <a href="#">Şifrenizi mi unuttunuz?</a>
+                <br />
+                <a href="#">Hesabınız yok mu?</a>
+            </form>
+        </div>
+
+    </body>
+
+    </html>
+}

@@ -1,0 +1,80 @@
+﻿@model IEnumerable<BY.Entity.Entity.Contest>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div style="margin-top:100px">
+
+    <h2>Yarışma Ekranı</h2>
+
+    <p>
+        @Html.ActionLink("Yeni Oluştur", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.Label("Yarışma Adı")
+            </th>
+            <th>
+                @Html.Label("Soru Sayısı")
+            </th>
+            <th>
+                @Html.Label("Seviye")
+            </th>
+            <th>
+                @Html.Label("Yarışma Ücreti")
+            </th>
+            <th>
+                @Html.Label("Ödül")
+            </th>
+            <th>
+                @Html.Label("Tarih")
+            </th>
+            <th>
+                @Html.Label("Resim")
+            </th>
+            <th>
+                @Html.Label("Yarışma Aktif Mi?")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ConName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuesCount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Level)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prize)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Picture)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsDeleted)
+                </td>
+                <td>
+                    @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Sil", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <div>
+        @Html.ActionLink("Geri Dön", "Index", "Default")
+    </div>
+</div>

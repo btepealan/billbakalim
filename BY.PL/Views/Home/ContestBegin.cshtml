@@ -1,0 +1,103 @@
+﻿@model IEnumerable<BY.Entity.Entity.Contest>
+@{
+    ViewBag.Title = "Oyun";
+}
+<style type="text/css">
+    /*para*/
+
+    /*para bitiş*/
+    .bgimg {
+      background-image: url('/w3images/forestbridge.jpg');
+      height: 100%;
+      background-position: center;
+      background-size: cover;
+      position: relative;
+      color: white;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 25px;
+    }
+
+    .topleft {
+      position: absolute;
+      top: 0;
+      left: 16px;
+    }
+
+    .bottomleft {
+      position: absolute;
+      bottom: 0;
+      left: 16px;
+    }
+
+    .middle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    hr {
+      margin: auto;
+      width: 40%;
+    }
+    </style>
+    @foreach (var item in Model)
+    {
+<body>
+
+    <div class="bgimg">
+        <div class="middle" style="margin-top:300px">
+            <h1>SIRADAKİ YARIŞMA</h1>
+            <hr>
+            <p id="demo" style="font-size:100px"></p>
+        </div>
+        <br />
+    </div>
+    <script>
+
+                var countDown = new Date("@item.Date.ToString("MMM dd, yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture)");
+                    var countDownDate = countDown.getTime();
+
+                    // her 1 saniyede güncellensin
+                    var countdownfunction = setInterval(function () {
+
+                        // bugünün tarihi
+                        var now = new Date().getTime();
+
+                        // yarışma tarihi ve bugün arasındaki fark
+                        var distance = countDownDate - now;
+
+
+                        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+
+                        document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+                            + minutes + "m " + seconds + "s ";
+
+                        // değer 0 dan küçükse
+                        if (distance < 0) {
+                        clearInterval(countdownfunction);
+                            document.getElementById("demo").innerHTML = "EXPIRED";
+                        }
+
+        }, 1000);
+
+    </script>
+    @if (ViewBag.Start!=null)
+    {
+        <div class="site-btn" style="display:block;margin-top:30%;width:200px;margin-left:40%">@Html.ActionLink("Oyuna Gir", "Index", "Game")</div>
+    }
+
+    @if(ViewBag.Start == null)
+    {
+    <div class="site-btn" style="display:none">@Html.ActionLink("Oyuna Gir", "Index", "Game")</div>
+    }
+    
+
+</body>
+
+    }

@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "Loose";
+}
+
+<h2 style="text-align:center;margin-top:10px;">KAYBETTİN !</h2>
+
+<body>
+    <div style="margin-left:3%;margin-top:10%;text-align:center">
+        <img src="~/img/icons8-nerd-80.png" />
+        <h4>Tüh! Yanlış cevap </h4><br />
+        <h4>Çarkı Döndürerek Oyunlardaki Şansını Arttırabileceğini Unutma !</h4>
+        <script type="text/javascript">
+    (function (global) {
+
+                if (typeof (global) === "undefined") {
+                    throw new Error("window is undefined");
+                }
+
+                var _hash = "!";
+                var noBackPlease = function () {
+                    global.location.href += "#";
+
+                    // making sure we have the fruit available for juice (^__^)
+                    global.setTimeout(function () {
+                        global.location.href += "!";
+                    }, 50);
+                };
+
+                global.onhashchange = function () {
+                    if (global.location.hash !== _hash) {
+                        global.location.hash = _hash;
+                    }
+                };
+
+                global.onload = function () {
+                    noBackPlease();
+
+                    // disables backspace on page except on input fields and textarea..
+                    document.body.onkeydown = function (e) {
+                        var elm = e.target.nodeName.toLowerCase();
+                        if (e.which === 8 && (elm !== 'input' && elm !== 'textarea')) {
+                            e.preventDefault();
+                        }
+                        // stopping event bubbling up the DOM tree..
+                        e.stopPropagation();
+                    };
+                }
+
+            })(window);</script>
+    </div>
+</body>

@@ -1,0 +1,99 @@
+﻿@model BY.Entity.Entity.Contest
+
+@{
+    ViewBag.Title = "Delete";
+}
+<div style="margin-top:100px">
+
+    <h2>Sil</h2>
+
+    <h3>Silmek İstediğine Emin Misin?</h3>
+    <div>
+        <h4>Contest</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayName("Yarışma Adı")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ConName)
+            </dd>
+
+            <dt>
+                @Html.DisplayName("Yarışma Tür")
+            </dt>
+
+            <dd>
+                @Html.DropDownList("ConTypeId", new SelectList(ViewBag.gametype, "Id", "TypeName"), new { @class = "form-control" })
+            </dd>
+
+            <dt>
+                @Html.DisplayName("Soru Sayısı")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.QuesCount)
+            </dd>
+
+            <dt>
+                @Html.DisplayName("Seviye")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Level)
+            </dd>
+
+            <dt>
+                @Html.DisplayName("Yarışma Ücreti")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+
+            <dt>
+                @Html.DisplayName("Ödül")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Prize)
+            </dd>
+
+            <dt>
+                @Html.DisplayName("Yarışma Tarihi")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Date)
+            </dd>
+
+            <dt>
+                @Html.DisplayName("Resim")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Picture)
+            </dd>
+
+            <dt>
+                @Html.DisplayName("Aktif Mi?")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IsDeleted)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Sil" class="btn btn-default" /> |
+                @Html.ActionLink("Geri Dön", "Index")
+            </div>
+        }
+    </div>
+</div>

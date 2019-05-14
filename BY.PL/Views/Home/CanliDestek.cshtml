@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "CanliDestek";
+   
+}
+<style type="text/css">
+
+
+    .message-body {
+        float: left;
+        margin-left:30%;
+        margin-top:20px;
+        width: 300px;
+        height: auto;
+        border: 1px solid #CCC;
+        background-color: #ffffff;
+        border: 1px solid #000000;
+        padding: 6px 8px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+    }
+</style>
+<!DOCTYPE html>
+<html>
+<body>
+    <div class="row">
+        <img src="~/img/canlıicondestek.jpg" style="height:150px;margin-top:50px;margin-left:150px;" /><h2 style="margin-top:160px">Hoşgeldin @User.Identity.Name sorularını cevaplamak için 7/24 buradayız</h2>
+    </div>
+    <div style="margin:auto" class="zmdi-view-column">
+        <div id="messages" style="border-style:double ; height:350px;width:700px;margin:auto;border-radius:8px"></div>
+
+        <input class="message-body" type="text" id="txtMessage" placeholder="Lütfen Mesajınızı Yazın..." />
+        @*@Html.TextBox("txtMessage")*@
+        <button id="btnSendMessage" class="site-btn btn-sm" style="margin-top:20px;margin-left:50px">Gönder</button>
+        <br />
+        <label class="message-body" for="txtUserName" style="display:none"></label><br />
+
+        @Html.TextBox("txtUsername", null, new { @class = "message-body", @placeholder = "Kullanıcı Adı", @style = "margin-right:50%" })
+
+
+    </div>
+
+</body>
+</html>

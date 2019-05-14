@@ -1,0 +1,146 @@
+﻿@model BY.PL.Models.UserInformation
+
+@{
+    ViewBag.Title = "AccountInfo";
+}
+<br />
+<br />
+<h2 style="margin-top:50px;margin-left:10px">Hesabım</h2>
+@using (Html.BeginForm())
+{
+<section class="page-section spad contact-page">
+    <div class="container" style="margin-top:-100px">
+        <div class="row">
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <img src="~/img/userimg.png" style="height:170px;width:170px" />
+
+                <div class="row">
+                    <div class="col-md-9">
+
+                        <ul class="contact-info-list">
+                            <li><div style="color:gold">Toplam Kazandığım Ödül:@ViewBag.totalprize</div></li>
+                            <li><div style="color:gold">Toplam Bakiye:@ViewBag.total</div></li>
+                            <li><div style="color:gold">Katıldığım Yarışma :@Model.ApplicationUserList.Counter</div></li>
+                        </ul>
+                    </div>
+                </div>
+              
+                <br />
+                <div class="social-links">
+                    <a href="#"><i class="fa fa-pinterest"></i></a>
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-dribbble"></i></a>
+                    <a href="#"><i class="fa fa-behance"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="contact-form-warp">
+                    <h4 class="comment-title">Kişisel Bilgiler</h4>
+                    <form class="comment-form">
+                        <div class="row" style="margin-left:-50px">
+                            <div class="col-md-6">
+                                <p>Adı</p>
+                                @Html.EditorFor(model => model.ApplicationUserList.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-6">
+                                <p>Soyadı</p>
+                                @Html.EditorFor(model => model.ApplicationUserList.Surname, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-6">
+                                <p>Kullanıcı Adı</p>
+                                @Html.EditorFor(model => model.ApplicationUserList.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                            </div><br />
+                            <div class="col-md-6">
+                                <p>E-Mail</p>
+                                @Html.EditorFor(model => model.ApplicationUserList.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-lg-12">
+                                <p>Hesap Numarası</p>
+                                @Html.EditorFor(model => model.ApplicationUserList.AccountNo, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-lg-12">
+                                <p>İletişim Numarası</p>
+                                @Html.EditorFor(model => model.ApplicationUserList.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <br />
+                            <div class="row" style="margin:auto;margin-top:50px">
+                                <br />
+                                <div class="btn site-btn" style="margin-right:10px">@Html.ActionLink("Ödeme Yap", "Payment", "Account")</div><br /><br />
+                                <button type="button" class="btn site-btn" data-toggle="modal" data-target="#myModal">Hesaba Aktar</button>
+                                <br /><br />
+                                <input type="submit" value="Güncelle" class="btn site-btn" style="margin-left:10px"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Hesaba Aktar</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control" placeholder="Lütfen aktarmak istediğiniz Bill giriniz" id="bill" />
+                    <p id="sonuc"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">İptal</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="beng">Onayla</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        var bill, sonuc = 0;
+    var bakiye='@ViewBag.total';
+    setInterval(function () { say() }, 1000);
+    function say() {
+        bill = (document.getElementById("bill").value);
+        sonuc = (7.42 * bill) / 1000;
+        document.getElementById("sonuc").innerHTML = sonuc;
+        }
+
+        $("#beng").click(function () {
+            Bil = (document.getElementById("bill").value);
+            if (Bil > bakiye && Bil < 10000) {
+                alert("Transfer işlemi onaylanmadı");
+            }
+            else {
+                          $.ajax({
+                url: "/Account/PaymTrans",
+                type: "POST",
+                dataType: "json",
+                    data: { desc: Bil },
+                    success: function (result= true) {
+                        alert("Aktarma başarılı");
+                        window.location.href = "/Account/AccountInfo";
+                }
+            });
+            }
+        });
+    });
+
+</script>
+
+
+
+
+
+
+
+

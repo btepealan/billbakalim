@@ -1,0 +1,190 @@
+﻿@model BY.Entity.Entity.ContestDetails
+@{
+    ViewBag.Title = "ContestBegin";
+}
+
+<h2>Yarışma Başladı !</h2>
+<style type="text/css">
+    .talk-bubble {
+        margin: 40px;
+        display: inline-block;
+        position: relative;
+        width: 200px;
+        height: auto;
+        background-color: lightyellow;
+    }
+
+    .border {
+        border: 8px solid #666;
+    }
+
+    .round {
+        border-radius: 30px;
+        -webkit-border-radius: 30px;
+        -moz-border-radius: 30px;
+    }
+
+    .tri-right.border.btm-left-in:before {
+        content: ' ';
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: 30px;
+        right: auto;
+        top: auto;
+        bottom: -40px;
+        border-color: #666 transparent transparent #666;
+    }
+
+    .tri-right.btm-left-in:after {
+        content: ' ';
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: 38px;
+        right: auto;
+        top: auto;
+        bottom: -20px;
+        border: 12px solid;
+        border-color: lightyellow transparent transparent lightyellow;
+    }
+
+    .talktext {
+        padding: 1em;
+        text-align: left;
+        line-height: 1.5em;
+    }
+</style>
+
+@using (Html.BeginForm("Index", "Game", FormMethod.Post))
+{<form id="myForm">
+        <section class="page-section community-page set-bg" data-setbg="img/community-bg.jpg">
+            <div class="community-warp spad" style="width:800px;height:500px;text-align:center;margin-top:50px;margin-bottom:10px">
+                <div class="container" style="margin-top:-50px">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <h1 id="sd" style="margin-top:-30px"></h1>
+                                @if (ViewBag.Joker != null)
+                                {
+                                 <script>
+                                         alert("Yanlış Cevap Jokeri Kullanıldı");
+                                   
+                                 </script>
+                                }
+
+                                @if (ViewBag.Saniye != null)
+                                {
+                                    <button type="button" id="secilen" class="btn site-btn" style="margin-left:330px;position:fixed;margin-top:-10px">+5</button>
+                                }
+                            </div>
+                            <input type="text" style="display:none" name="conid" value="@Model.ContestId" />
+                            <input type="text" style="display:none" name="id" value="@Model.Id" />
+                            <input type="text" style="display:none" name="num" value="@Model.QuesNum" />
+                            <div class="talk-bubble tri-right border round btm-left-in" style="width:650px;margin-top:5px">
+                                <div class="talktext" style="width:300px">
+                                    <h5 style="width:500px;height:100px">@Model.Question</h5>
+                                </div>
+                            </div>
+                            <h3 class="community-top-title" style="text-align:center;width:700px;margin-top:-30px;height:5px"></h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="community-post" style="margin-left:200px;margin-top:5px">
+
+
+                            <table>
+                                <tr>
+                                    <td style="width:100px"> <input type="submit" name="answer" value="@Model.Ans1" class="btn site-btn" style="width:300px;margin-left:-100px;" /></td>
+                                    <td style="width:100px"> <input type="submit" name="answer" value="@Model.Ans2" class="btn site-btn" style="width:300px;margin-right:-100px" /></td>
+                                </tr>
+                                <tr>
+                                    <td style="width:100px"> <input type="submit" name="answer" value="@Model.Ans3" class="btn site-btn" style="width:300px;margin-left:-100px" /></td>
+                                    <td style="width:100px"> <input type="submit" name="answer" value="@Model.Ans4" class="btn site-btn" style="width:300px;margin-right:-100px" /></td>
+                                </tr>
+                            </table>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
+}
+
+<script>
+    var i = 11;
+
+    var x = setInterval(function () { say() }, 1000);
+    function say() {
+        document.getElementById("sd").innerHTML = i;
+        i--;
+        $('#secilen').click(function () {
+            i = i + 1;
+            $('#secilen').hide(1000);
+            $.ajax({
+                url: "/Game/BonusUpdate",
+                type: "POST",
+                dataType: "json",
+                success: function (result = true) {
+                }
+            });
+        });
+
+
+        if (i == -1) {
+              Yonlendir();
+
+            clearInterval(x);
+            document.getElementById("sd").innerHTML = i;
+        }
+        function Yonlendir() {
+            window.location.href = "/Game/Loose";
+        }
+    }
+</script>
+<script type="text/javascript">
+    (function (global) {
+
+        if (typeof (global) === "undefined") {
+            throw new Error("window is undefined");
+        }
+
+        var _hash = "!";
+        var noBackPlease = function () {
+            global.location.href += "#";
+
+
+            global.setTimeout(function () {
+                global.location.href += "!";
+            }, 50);
+        };
+
+        global.onhashchange = function () {
+            if (global.location.hash !== _hash) {
+                global.location.hash = _hash;
+            }
+        };
+
+        global.onload = function () {
+            noBackPlease();
+
+
+            document.body.onkeydown = function (e) {
+                var elm = e.target.nodeName.toLowerCase();
+                if (e.which === 8 && (elm !== 'input' && elm !== 'textarea')) {
+                    e.preventDefault();
+                }
+                e.stopPropagation();
+            };
+        }
+
+    })(window);
+
+</script>
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, "Game/Loose")
+    }
+</script>

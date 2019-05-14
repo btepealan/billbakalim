@@ -1,0 +1,82 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<body>
+
+    <section class="hero-section">
+        <div class="latest-news-section">
+            <div class="ln-title">Güncel</div>
+            <div class="news-ticker">
+                <div class="news-ticker-contant">
+                    <div class="nt-item"><span class="new">Yarışma</span>Yarışmaları takip edip, bilgini paraya çevirebilirsin</div>
+                    <div class="nt-item"><span class="strategy">Çark</span>Çarkı döndürerek yarışmalardaki şansını attırabilirsin</div>
+                    <div class="nt-item"><span class="racing">Haydi!</span>Durma şansını dene</div>
+                </div>
+            </div>
+        </div>
+        @if (ViewBag.Bakiye != null)
+        {
+            <script>
+                alert("Yarışma İçin Yeterli Bakiyeniz Yok");
+            </script>
+        }
+        <div class="hero-slider owl-carousel">
+            <div class="hs-item set-bg" data-setbg="/img/wp2789789.jpg">
+                <div class="hs-text">
+                    <div class="container" style="margin-top:-200px">
+                        <h2 style="text-align:center">Bilginle Para Kazanmaya Hazır Mısın ? @User.Identity.Name </h2>
+                        <h2 style="text-align:center;font-size:70px;font-family:none"><font color="gold">Bill</font>Bakalım</h2>
+                        @if (!Request.IsAuthenticated)
+                        {
+                            <div style="text-align:center">
+                                @Html.ActionLink("Giriş Yap", "Login", "Account", null, htmlAttributes: new { @class = "site-btn" })
+                                <br />
+                                <br />
+
+                                @Html.ActionLink("Kayıt Ol", "Register", "Account", null, htmlAttributes: new { @class = "site-btn" })
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript">(function (global) {
+
+            if (typeof (global) === "undefined") {
+                throw new Error("window is undefined");
+            }
+
+            var _hash = "!";
+            var noBackPlease = function () {
+                global.location.href += "#";
+
+                // making sure we have the fruit available for juice (^__^)
+                global.setTimeout(function () {
+                    global.location.href += "!";
+                }, 50);
+            };
+
+            global.onhashchange = function () {
+                if (global.location.hash !== _hash) {
+                    global.location.hash = _hash;
+                }
+            };
+
+            global.onload = function () {
+                noBackPlease();
+
+                // disables backspace on page except on input fields and textarea..
+                document.body.onkeydown = function (e) {
+                    var elm = e.target.nodeName.toLowerCase();
+                    if (e.which === 8 && (elm !== 'input' && elm !== 'textarea')) {
+                        e.preventDefault();
+                    }
+                    // stopping event bubbling up the DOM tree..
+                    e.stopPropagation();
+                };
+            }
+
+        })(window);
+        </script>
+</body>

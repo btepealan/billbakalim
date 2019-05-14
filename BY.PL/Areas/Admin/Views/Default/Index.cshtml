@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Admin";
+    //var user = Session["LoginAdmin"] as BY.Entity.Entity.Staff;
+}
+
+@*<h2>Sayın @user.Name @user.Surname Hoşgeldiniz </h2>*@
+<div style="margin-top:100px">
+
+    <h3><span style="color:gold;margin-top:50px">Bill</span>Bakalım Admin Paneli</h3>
+
+    <ul>
+        <li>
+            <a href="/Admin/UserInfo">Kullanıcı Bilgileri</a>
+        </li>
+        <li>
+            <a href="/Admin/Contests">Yarışma Yönetimi</a>
+        </li>
+        @*<li>
+            <a href="/Admin/ContestsBasic">Yeni Yarışmacılar İçin Yarışma Yönetimi </a>
+        </li>*@
+        <li>
+            <a href="/Admin/Questions">Soru Yönetimi </a>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,86 @@
+﻿@model IEnumerable<BY.Entity.Entity.Questions>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div style="margin-top:100px">
+
+    <h2>Soru Havuzu</h2>
+
+    <p>
+        @Html.ActionLink("Soru Ekle", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Soru Türü")
+            </th>
+            <th>
+                @Html.DisplayName("Soru")
+            </th>
+            <th>
+                @Html.DisplayName("1.Şık")
+            </th>
+            <th>
+                @Html.DisplayName("2.Şık")
+            </th>
+            <th>
+                @Html.DisplayName("3.Şık")
+            </th>
+            <th>
+                @Html.DisplayName("4.Şık")
+            </th>
+            <th>
+                @Html.DisplayName("Doğru Cevap")
+            </th>
+            <th>
+                @Html.DisplayName("Seviye")
+            </th>
+            <th>
+                @Html.DisplayName("Aktif Mi?")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DropDownList("ConTypeId", new SelectList(ViewBag.gametype, "Id", "TypeName"), new { @class = "form-control" })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Question)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ans1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ans2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ans3)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ans4)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrueAns)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Level)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsDeleted)
+                </td>
+                <td>
+                    @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Sil", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <div>
+        @Html.ActionLink("Geri Dön", "Index", "Default")
+    </div>
+</div>

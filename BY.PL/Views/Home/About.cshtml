@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+
+<body >
+    <div class="col-md-7" style="margin:auto">
+        <br />
+        <br />
+
+        <h2><span style="color:gold">Bill</span>Bakalim Nedir?</h2>
+        <br />
+
+        <button class="accordion">Oyunun amacı?</button>
+        <div class="panel">
+            <p>Bilginizle hem eğlenip hem de para kazanabileceğiniz bir platform oluşturmak</p>
+        </div>
+
+        <button class="accordion">Nasıl oynanır?</button>
+        <div class="panel">
+            <p>Üyelik işlemlerini gerçekleştirdiken sonra yarışma tarihlerini takip ederek katılabilirsin.</p>
+        </div>
+
+        <button class="accordion">Çark nedir?</button>
+        <div class="panel">
+            <p>Çarkı çevirerek yarışmalarda kazanma çansını arttırabilirsin</p>
+        </div>
+        <button class="accordion">Bill nedir?</button>
+        <div class="panel">
+            <p>BillBakalım 'da kullandığımız para birimimiz.Hesabım kısmında Bill'lerinizin ₺ değerini görebilirsiniz</p>
+        </div>
+        <button class="accordion">Bill'lerimi nasıl kullanırım?</button>
+        <div class="panel">
+            <p>Hesabınızdaki Bill bakiyesi 20000 üzerindeyse hesabım kısmıdan Billerinizi hesabınıza aktarabilirsiniz.</p>
+        </div>
+        <button class="accordion">Sorumun cevabını bulamadım</button>
+        <div class="panel">
+            <p>Canlı Destek bölümünden bizimle iletişime geçebirsin</p>
+        </div>
+
+        <script>
+            var acc = document.getElementsByClassName("accordion");
+            var i;
+
+            for (i = 0; i < acc.length; i++) {
+                acc[i].addEventListener("click", function () {
+                    this.classList.toggle("active");
+                    var panel = this.nextElementSibling;
+                    if (panel.style.display === "block") {
+                        panel.style.display = "none";
+                    } else {
+                        panel.style.display = "block";
+                    }
+                });
+            }
+        </script>
+    </div>
+
+</body>
